@@ -7,11 +7,11 @@ import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Login from './paginas/login/Login';
 import ListaTema from './componentes/temas/listatema/ListaTema';
-import ListaPostagem from './componentes/postagens/listapostagem/ListaPostagem';
 import CadastroPost from './componentes/postagens/cadastroPost/CadastroPost';
 import CadastroTema from './componentes/temas/cadastroTema/CadastroTema';
 import DeletarPostagem from './componentes/postagens/deletarPostagem/DeletarPostagem';
 import DeletarTema from './componentes/temas/deletarTema/DeletarTema';
+import ListaPostagem from './componentes/postagens/listapostagem/ListaPostagem';
 
 function App() {
   return (

@@ -1,24 +1,27 @@
 import React, { useEffect } from 'react';
-import {Typography, Grid, Button} from '@material-ui/core';
-import {Box} from '@mui/material';
+import { Typography, Grid, Button } from '@material-ui/core';
+import { Box } from '@mui/material';
 import TabPostagem from '../../componentes/postagens/tabpostagem/TabPostagem';
 import './Home.css';
 import ModalPostagem from '../../componentes/postagens/modalPostagem/ModalPostagem';
-import { useNavigate } from 'react-router-dom';
-import useLocalStorage from 'react-use-localstorage';
+import { Link, useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { TokenState } from '../../store/tokens/TokensReducer';
 
 function Home() {
     let navigate = useNavigate();
-    const [token, setToken] = useLocalStorage('token');
-    
+    const token = useSelector<TokenState, TokenState["tokens"]>(
+        (state) => state.tokens
+    );
+
     useEffect(() => {
-      if (token == "") {
-          alert("Você precisa estar logado")
-          navigate("/login")
-  
-      }
-  }, [token])
-  
+        if (token == "") {
+            alert("Você precisa estar logado")
+            navigate("/login")
+
+        }
+    }, [token])
+
     return (
         <>
             <Grid container direction="row" justifyContent="center" alignItems="center" style={{ backgroundColor: "#1E1E1E" }}>
@@ -31,7 +34,9 @@ function Home() {
                         <Box marginRight={1}>
                             <ModalPostagem />
                         </Box>
-                        <Button variant="outlined" style={{ borderColor: "lightgrey", backgroundColor: "#000000", color: "lightgrey" }}>Ver Postagens</Button>
+                        <Link to="/posts" className="text-decorator-none">
+                            <Button variant="outlined" style={{ borderColor: "lightgrey", backgroundColor: "#000000", color: "lightgrey" }}>Ver Postagens</Button>
+                        </Link>
                     </Box>
                 </Grid>
                 <Grid item xs={6} >

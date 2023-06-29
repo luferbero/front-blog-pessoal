@@ -7,6 +7,7 @@ import Tema from '../../../models/Tema';
 import { busca } from '../../../services/Service';
 import { useSelector } from 'react-redux';
 import { TokenState } from '../../../store/tokens/TokensReducer';
+import { toast } from 'react-toastify';
 
 function ListaTema() {
     const [temas, setTemas] = useState<Tema[]>([])
@@ -17,7 +18,16 @@ function ListaTema() {
 
     useEffect(()=>{
         if(token == ''){
-            alert("VocÊ precisa estar logado")
+            toast.error("Você precisa estar logado", {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: false,
+                theme: "colored",
+                progress: undefined,
+            });
             navigate("/login")
         }
     }, [token])
@@ -54,7 +64,7 @@ function ListaTema() {
 
                             <Link to={`/formularioTema/${tema.id}`} className="text-decorator-none">
                                 <Box mx={1}>
-                                    <Button variant="contained" className="marginLeft" size='small' color="primary" >
+                                    <Button variant="contained" className="marginLeft" size='small' style={{ borderColor: "lightgrey", backgroundColor: "#000000", color: "lightgrey" }} >
                                         atualizar
                                     </Button>
                                 </Box>
